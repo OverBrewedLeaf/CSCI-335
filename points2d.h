@@ -116,44 +116,45 @@ class Points2D {
 
  //  @c1: A sequence.
  //  @c2: A second sequence.
+ //  @c3_: Combined Sequence.
  //  @return their sum. If the sequences are not of the same size, append the
  //    result with the remaining part of the larger sequence.
  friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
    // Code missing.
-   Points2D ans_;
+   Points2D combined_;
    size_t smaller_;
    size_t larger_;
    // Determines which object is larger & smaller
    if(c1.size() < c2.size()){
-     ans_.sequence_ = new std::array<Object, 2>[c2.size_];
+     combined_.sequence_ = new std::array<Object, 2>[c2.size_];
      smaller_ = c1.size();
      larger_ = c2.size();
    }
    else if(c1.size() > c2.size()){
-     ans.sequence_ = new std::array<Object, 2>[c1.size_];
+     combined_.sequence_ = new std::array<Object, 2>[c1.size_];
      larger_ = c1.size();
      smaller_ = c2.size();
    }
-   ans_.size_ = larger_;
+   combined_.size_ = larger_;
    //Adds the sums
-   for(unsigned i = 0; i < smaller; i++){
-     ans_.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
-     ans_.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
+   for(unsigned i = 0; i < smaller_; i++){
+     combined_.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
+     combined_.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
    }
    //Leftover append
    if(c1.size() > c2.size()){
-    for(unsigned i = smaller; i < larger; i++){
-      ans_.sequence_[i][0] = c1.sequence_[i][0];
-      ans_.sequence_[i][1] = c1.sequence_[i][1];
+    for(unsigned i = smaller_; i < larger_; i++){
+      combined_.sequence_[i][0] = c1.sequence_[i][0];
+      combined_.sequence_[i][1] = c1.sequence_[i][1];
     } 
    }
    else if(c1.size() < c2.size()){
-     for(unsigned i = smaller; i < larger; i++){
-       ans_.sequence_[i][0] = c2.sequence_[i][0];
-       ans_.sequence_[i][1] = c2.sequence_[i][1];
+     for(unsigned i = smaller_; i < larger_; i++){
+       combined_.sequence_[i][0] = c2.sequence_[i][0];
+       combined_.sequence_[i][1] = c2.sequence_[i][1];
      }
    }
-  return ans_;
+  return combined_;
  }
 
  // Overloading the << operator.
