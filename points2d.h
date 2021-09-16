@@ -35,7 +35,7 @@ class Points2D {
       sequence_ = nullptr;
     }
     sequence_ = new std::array<Object, 2>[rhs.size_];
-    for (size_t i = 0; i < rhs.size_; ++i){
+    for (size_t i = 0; i < rhs.size_; i++){
       sequence_[i] = rhs.sequence_[i];
     }
   }
@@ -94,7 +94,7 @@ class Points2D {
     sequence_ = new std::array<Object, 2>[size_of_sequence];
     
     Object token;
-    for (int i = 0 ;input_stream >> token; ++i) {
+    for (int i = 0 ;input_stream >> token; i++) {
       // Read coordinates.
       // Fill sequence_ here.
       sequence_[i][0] = token;
@@ -130,6 +130,7 @@ class Points2D {
    Points2D ans;
    size_t smaller;
    size_t larger;
+   //determines which object is larger & smaller
    if(c1.size() < c2.size()){
      ans.sequence_ = new std::array<Object, 2>[c2.size_];
      smaller = c1.size();
@@ -140,22 +141,25 @@ class Points2D {
      larger = c1.size();
      smaller = c2.size();
    }
-   for(unsigned i = 0; i < smaller; ++i){
+   //Adds the sums
+   for(unsigned i = 0; i < smaller; i++){
      ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
      ans.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
    }
+   //leftover append
    if(c1.size() > c2.size()){
-    for(unsigned i = 0; i < smaller; ++i){
-      ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
-      ans.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
+    for(unsigned i = smaller; i < larger; i++){
+      ans.sequence_[i][0] = c1.sequence_[i][0];
+      ans.sequence_[i][1] = c1.sequence_[i][1];
     } 
    }
    else if(c1.size() < c2.size()){
-     for(unsigned i = smaller; i < larger; ++i){
+     for(unsigned i = smaller; i < larger; i++){
        ans.sequence_[i][0] = c2.sequence_[i][0];
-       ans.sequence_[i][1] = c1.sequence_[i][1];
+       ans.sequence_[i][1] = c2.sequence_[i][1];
      }
    }
+
    ans.size_ = larger;
   return ans;
  }
@@ -167,7 +171,7 @@ class Points2D {
      out << "(" << ")";
    }
    else if(some_points2.size_ >= 1){
-     for(size_t i = 0; i < some_points2.size_; ++i){
+     for(size_t i = 0; i < some_points2.size_; i++){
        out << "(" << some_points2.sequence_[i][0] << ", " << some_points2.sequence_[i][1] << ") ";
      }
    }
