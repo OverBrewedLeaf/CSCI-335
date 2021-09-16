@@ -1,1 +1,3 @@
-# 335
+# Jeffrey Li
+# Hunter College
+# CSCI 335
