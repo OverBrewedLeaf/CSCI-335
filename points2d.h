@@ -131,12 +131,12 @@ class Points2D {
    size_t smaller;
    size_t larger;
    if(c1.size() < c2.size()){
-     ans.sequence_ = new std::array<Object, 2>[c1.size_];
+     ans.sequence_ = new std::array<Object, 2>[c2.size_];
      smaller = c1.size();
      larger = c2.size();
    }
    else if(c1.size() > c2.size()){
-     ans.sequence_ = new std::array<Object, 2>[c2.size_];
+     ans.sequence_ = new std::array<Object, 2>[c1.size_];
      larger = c1.size();
      smaller = c2.size();
    }
