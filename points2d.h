@@ -1,5 +1,6 @@
 // --> Jeffrey Li
 // Few comments describing the class Points2
+// Template Class with Big-O functionality and 
 
 #ifndef CSCI335_HOMEWORK1_POINTS2D_H_
 #define CSCI335_HOMEWORK1_POINTS2D_H_
@@ -141,6 +142,7 @@ class Points2D {
      larger = c1.size();
      smaller = c2.size();
    }
+   ans.size_ = larger;
    //Adds the sums
    for(unsigned i = 0; i < smaller; i++){
      ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
@@ -159,8 +161,6 @@ class Points2D {
        ans.sequence_[i][1] = c2.sequence_[i][1];
      }
    }
-
-   ans.size_ = larger;
   return ans;
  }
 
