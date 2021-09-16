@@ -30,13 +30,12 @@ class Points2D {
 
   // Copy-constructor.
   Points2D(const Points2D &rhs){
-    if(rhs.size()){
+    size_ = rhs.size_;
+    if(rhs.size() == 0){
       sequence_ = nullptr;
-      size_ = 0;
     }
-    size_ = rhs.size();
     sequence_ = new std::array<Object, 2>[rhs.size_];
-    for(size_t i = 0; i < rhs.size_; i++){
+    for (size_t i = 0; i < rhs.size_; ++i){
       sequence_[i] = rhs.sequence_[i];
     }
   }
@@ -44,21 +43,19 @@ class Points2D {
   // Copy-assignment. If you have already written
   // the copy-constructor and the move-constructor
   // you can just use:
-  // {
-  // Points2D copy = rhs; 
-  // std::swap(*this, copy);
-  // return *this;
-  // }
-  Points2D& operator=(const Points2D &rhs){
-    Points2D copy = rhs;
-    std::swap(*this, copy);
-    return *this;
+  Points2D& operator=(const Points2D &rhs)
+  {
+  Points2D copy = rhs; 
+  std::swap(*this, copy);
+  return *this;
   }
 
   // Move-constructor. 
   Points2D(Points2D &&rhs){
-    std::swap(sequence_,rhs.sequence_);
-    std::swap(size_,rhs.size_);
+    sequence_ = std::move(rhs.sequence_);
+    size_ = std::move(rhs.size_);
+    rhs.size_ = 0;
+    rhs.sequence_ = nullptr;
   }
 
   // Move-assignment.
@@ -130,37 +127,37 @@ class Points2D {
  //    result with the remaining part of the larger sequence.
  friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
    // Code missing.
-   Points2D value;
+   Points2D ans;
    size_t smaller;
    size_t larger;
    if(c1.size() < c2.size()){
-     value.sequence_ = new std::array<Object, 2>[c1.size_];
+     ans.sequence_ = new std::array<Object, 2>[c1.size_];
      smaller = c1.size();
      larger = c2.size();
    }
    else if(c1.size() > c2.size()){
-     value.sequence_ = new std::array<Object, 2>[c2.size_];
+     ans.sequence_ = new std::array<Object, 2>[c2.size_];
      larger = c1.size();
      smaller = c2.size();
    }
-   for(unsigned i = 0; i < smaller; i++){
-     value.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
-     value.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
+   for(unsigned i = 0; i < smaller; ++i){
+     ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
+     ans.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
    }
    if(c1.size() > c2.size()){
-    for(unsigned i = 0; i < smaller; i++){
-      value.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
-      value.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
+    for(unsigned i = 0; i < smaller; ++i){
+      ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
+      ans.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
     } 
    }
    else if(c1.size() < c2.size()){
-     for(unsigned i = smaller; i < larger; i++){
-       value.sequence_[i][0] = c2.sequence_[i][0];
-       value.sequence_[i][1] = c1.sequence_[i][1];
+     for(unsigned i = smaller; i < larger; ++i){
+       ans.sequence_[i][0] = c2.sequence_[i][0];
+       ans.sequence_[i][1] = c1.sequence_[i][1];
      }
    }
-   value.size_ = larger;
-  return value;
+   ans.size_ = larger;
+  return ans;
  }
 
  // Overloading the << operator.
@@ -170,11 +167,11 @@ class Points2D {
      out << "(" << ")";
    }
    else if(some_points2.size_ >= 1){
-     for(size_t i = 0; i < some_points2.size_; i++){
-       out << "(" << some_points2.sequence_[i][0] << "," << some_points2.sequence_[i][1] << ") ";
+     for(size_t i = 0; i < some_points2.size_; ++i){
+       out << "(" << some_points2.sequence_[i][0] << ", " << some_points2.sequence_[i][1] << ") ";
      }
    }
-  return out;
+  return out << std::endl;
  }
  
  private:
