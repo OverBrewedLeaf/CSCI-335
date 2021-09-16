@@ -80,7 +80,7 @@ class Points2D {
 
   // Read a chain from standard input.
   void ReadPoints2D() {
-    std::cout << std::endl;
+    std::cout << std::endl;// needed for formatting
     // Part of code included (without error checking).
     std::string input_line;
     std::getline(std::cin, input_line); 
@@ -130,7 +130,7 @@ class Points2D {
    Points2D ans;
    size_t smaller;
    size_t larger;
-   //determines which object is larger & smaller
+   // Determines which object is larger & smaller
    if(c1.size() < c2.size()){
      ans.sequence_ = new std::array<Object, 2>[c2.size_];
      smaller = c1.size();
@@ -146,7 +146,7 @@ class Points2D {
      ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
      ans.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
    }
-   //leftover append
+   //Leftover append
    if(c1.size() > c2.size()){
     for(unsigned i = smaller; i < larger; i++){
       ans.sequence_[i][0] = c1.sequence_[i][0];
@@ -180,7 +180,7 @@ class Points2D {
  private:
   // Sequence of points. 
   std::array<Object, 2> *sequence_;
-  // Size of sequence.
+  // Size of this sequence.
   size_t size_;
 
 };
