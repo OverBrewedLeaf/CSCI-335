@@ -80,6 +80,7 @@ class Points2D {
 
   // Read a chain from standard input.
   void ReadPoints2D() {
+    std::cout << std::endl;
     // Part of code included (without error checking).
     std::string input_line;
     std::getline(std::cin, input_line); 
@@ -105,7 +106,6 @@ class Points2D {
   }
 
   size_t size() const {
-    // Code missing.
     return size_;
   }
 
@@ -115,7 +115,7 @@ class Points2D {
   // abort() if out-of-range.
   const std::array<Object, 2>& operator[](size_t location) const { 
     // Code missing.
-    if(location >= size_ || location < 0){
+    if(location >= size_ || location < 0){//out of range check
       abort();
     }
     return sequence_[location];
@@ -166,7 +166,6 @@ class Points2D {
 
  // Overloading the << operator.
  friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points2) {
-   // Code missing.
    if(!some_points2.size_){
      out << "(" << ")";
    }
