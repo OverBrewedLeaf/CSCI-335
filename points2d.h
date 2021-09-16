@@ -1,6 +1,6 @@
 // --> Jeffrey Li
 // Few comments describing the class Points2
-// Template Class with Big-O functionality and 
+// Template Class of 2D point with Big-5 implementation and arraylike functionality
 
 #ifndef CSCI335_HOMEWORK1_POINTS2D_H_
 #define CSCI335_HOMEWORK1_POINTS2D_H_
@@ -128,40 +128,40 @@ class Points2D {
  //    result with the remaining part of the larger sequence.
  friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
    // Code missing.
-   Points2D ans;
-   size_t smaller;
-   size_t larger;
+   Points2D ans_;
+   size_t smaller_;
+   size_t larger_;
    // Determines which object is larger & smaller
    if(c1.size() < c2.size()){
-     ans.sequence_ = new std::array<Object, 2>[c2.size_];
-     smaller = c1.size();
-     larger = c2.size();
+     ans_.sequence_ = new std::array<Object, 2>[c2.size_];
+     smaller_ = c1.size();
+     larger_ = c2.size();
    }
    else if(c1.size() > c2.size()){
      ans.sequence_ = new std::array<Object, 2>[c1.size_];
-     larger = c1.size();
-     smaller = c2.size();
+     larger_ = c1.size();
+     smaller_ = c2.size();
    }
-   ans.size_ = larger;
+   ans_.size_ = larger_;
    //Adds the sums
    for(unsigned i = 0; i < smaller; i++){
-     ans.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
-     ans.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
+     ans_.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
+     ans_.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
    }
    //Leftover append
    if(c1.size() > c2.size()){
     for(unsigned i = smaller; i < larger; i++){
-      ans.sequence_[i][0] = c1.sequence_[i][0];
-      ans.sequence_[i][1] = c1.sequence_[i][1];
+      ans_.sequence_[i][0] = c1.sequence_[i][0];
+      ans_.sequence_[i][1] = c1.sequence_[i][1];
     } 
    }
    else if(c1.size() < c2.size()){
      for(unsigned i = smaller; i < larger; i++){
-       ans.sequence_[i][0] = c2.sequence_[i][0];
-       ans.sequence_[i][1] = c2.sequence_[i][1];
+       ans_.sequence_[i][0] = c2.sequence_[i][0];
+       ans_.sequence_[i][1] = c2.sequence_[i][1];
      }
    }
-  return ans;
+  return ans_;
  }
 
  // Overloading the << operator.
