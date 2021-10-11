@@ -49,13 +49,13 @@ namespace
     }
     database.close();
   }
-  // @db_filename: inputted file name for database
-  // @seq_file: inputted sequences
+  // @a_tree: type of tree
+  // @seq_filename: inputted sequences
   // returns the amount of successful queries
   template <typename TreeType>
-  int success_count(const TreeType &a_tree, const string &db_filename)
+  int success_query(const TreeType &a_tree, const string &seq_filename)
   {
-    ifstream input(db_filename);
+    ifstream input(seq_filename);
     string sequence;
     int temp,success = 0;
     while (getline(input, sequence))
@@ -68,6 +68,24 @@ namespace
     }
     input.close();
     return success;
+  }
+
+  // @a_tree: type of tree
+  // @seq_filename: inputted sequences
+  // returns the amount of total queries
+  template <typename TreeType>
+  float total_query(const TreeType &a_tree, const string &seq_filename)
+  {
+    ifstream input(seq_filename);
+    string sequence;
+    int count = 0;
+    while (getline(input, sequence))
+    {
+      SequenceMap map(sequence, "");
+      a_tree.contains(map, count);
+    }
+    input.close();
+    return count;
   }
 
   // @db_filename: inputted file name for database
@@ -89,10 +107,10 @@ namespace
     cout << "3b: " << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
 
     // 4a. Prints the total	number of	successful queries
-    cout << "4a: " << success_count(a_tree, seq_filename) << endl;
+    cout << "4a: " << success_query(a_tree, seq_filename) << endl;
 
     // 4b. Prints the	average	number of recursion calls
-    cout << "4b: Not Done" << endl;
+    cout << "4b: " << total_query(a_tree, seq_filename) / success_query(a_tree, seq_filename) << endl;
     // 5a. Prints	the	total	number successful removes.
     cout << "5a: Not Done" << endl;
 
