@@ -197,7 +197,7 @@ class BinarySearchTree
             insert( x, t->left );
         else if( t->element < x )
             insert( x, t->right );
-        else
+        else t->element.Merge(x);
             ;  // Duplicate; do nothing
     }
     
@@ -215,7 +215,7 @@ class BinarySearchTree
             insert( std::move( x ), t->left );
         else if( t->element < x )
             insert( std::move( x ), t->right );
-        else
+        else t->element.Merge(x);
             ;  // Duplicate; do nothing
     }
 
@@ -325,7 +325,7 @@ class BinarySearchTree
         if( t != nullptr )
         {
             printTree( t->left, out );
-            out << t->element << endl;
+            out << t->element << " " << t->element.getRecog()<< endl;
             printTree( t->right, out );
         }
     }

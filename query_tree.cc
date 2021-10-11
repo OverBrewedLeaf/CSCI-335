@@ -41,24 +41,23 @@ namespace
     string acryonym = "";
     while (getline(database, line))
     {
-      if (line.empty()) continue;
-
+      if(line.empty()) 
+        continue;
       acryonym = get_chunk_(line);//map acronym
-      while(line != "/")
+      while(line.length() > 1)
       {
-        SequenceMap something(get_chunk_(line),acryonym);
-        a_tree.insert(something);
+        SequenceMap map(get_chunk_(line),acryonym);
+        a_tree.insert(map);
       }
     }
     database.close();
-
+    // a_tree.printTree();
     string input = "";
     for(int i = 0; i < 3; i++)
     {
       cin >> input;
       a_tree.printSeq(input);
     }
-
   }
 
 }  // namespace

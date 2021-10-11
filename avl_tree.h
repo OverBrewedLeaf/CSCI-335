@@ -198,6 +198,7 @@ class AvlTree
             insert( x, t->left );
         else if( t->element < x )
             insert( x, t->right );
+        else t->element.Merge(x);
         
         balance( t );
     }
@@ -216,6 +217,7 @@ class AvlTree
             insert( std::move( x ), t->left );
         else if( t->element < x )
             insert( std::move( x ), t->right );
+        else t->element.Merge(x);
         
         balance( t );
     }

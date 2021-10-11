@@ -46,9 +46,10 @@ class SequenceMap{
         }
 
         string getRecog() {return recognition_sequence_;}
+        
         void getAcro(){
             for(string x: enzyme_acronyms_){
-                cout << x;
+                cout << x + " ";
             }
             cout << endl;
         }
