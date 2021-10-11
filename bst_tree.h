@@ -12,7 +12,7 @@ using namespace std;
 // ******************PUBLIC OPERATIONS*********************
 // void insert( x )       --> Insert x
 // void remove( x )       --> Remove x
-// bool contains( x )     --> Return true if x is present
+// bool contains(x,&count)--> Return true if x is present, counts any duplicates
 // Comparable findMin( )  --> Return smallest item
 // Comparable findMax( )  --> Return largest item
 // boolean isEmpty( )     --> Return true if empty; else false
@@ -84,9 +84,9 @@ class BinarySearchTree
     }
 
     // Returns true if x is found in the tree.
-    bool contains( const Comparable & x ) const
+    bool contains(const Comparable & x, int & count ) const
     {
-        return contains( x, root );
+        return contains( x, root, ++count);
     }
 
 
@@ -287,16 +287,19 @@ class BinarySearchTree
      * x is item to search for.
      * t is the node that roots the subtree.
      */
-    bool contains( const Comparable & x, BinaryNode *t ) const
+    bool contains( const Comparable & x, BinaryNode *t, int &count ) const
     {
         if( t == nullptr )
             return false;
         else if( x < t->element )
-            return contains( x, t->left );
+            return contains( x, t->left, ++count);
         else if( t->element < x )
-            return contains( x, t->right );
+            return contains( x, t->right, ++count);
         else
-            return true;    // Match
+        {
+            ++count;
+            return true;// Match
+        }
     }
 /****** NONRECURSIVE VERSION*************************
     bool contains( const Comparable & x, BinaryNode *t ) const

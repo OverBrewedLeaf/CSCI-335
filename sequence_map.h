@@ -1,6 +1,18 @@
 // Author: Jeffrey Li
 // Date 10/11/21
-// 
+// BinarySearchTree class
+//
+// CONSTRUCTION: zero parameter
+//
+// ******************PUBLIC OPERATIONS*********************
+// SequenceMap(string,string)           --> constructs sequence map with 2 parameters, one as
+//                                          a recog sequenceand the other as a enzyme acronym
+// bool operator<(SequenceMap)          --> overloads comparision operator
+// friend ostream &operator<<(ostream,SequenceMap)  --> overloads the print operator to only print the acrnym
+// void merge(SequenceMap)              --> merges for duplicate names
+// string getRecog()                    --> getter method for recog sequence
+// void getAcro()                       --> prints all acronyms
+// ********************************************************
 
 
 #ifndef SEQUENCE_MAP_H

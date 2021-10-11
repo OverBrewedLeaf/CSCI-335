@@ -49,17 +49,19 @@ namespace
     }
     database.close();
   }
-
+  // @db_filename: inputted file name for database
+  // @seq_file: inputted sequences
+  // returns the amount of successful queries
   template <typename TreeType>
   int success_count(const TreeType &a_tree, const string &db_filename)
   {
     ifstream input(db_filename);
     string sequence;
-    int success = 0;
+    int temp,success = 0;
     while (getline(input, sequence))
     {
       SequenceMap map(sequence, "");
-      if (a_tree.contains(map))
+      if (a_tree.contains(map, temp))
       {
         success++;
       }
@@ -68,6 +70,10 @@ namespace
     return success;
   }
 
+  // @db_filename: inputted file name for database
+  // @seq_file: inputted sequences
+  // @a_tree: type of tree, either avl or BST
+  // TestTree tests all tasks
   template <typename TreeType>
   void TestTree(const string &db_filename, const string &seq_filename, TreeType &a_tree)
   {
@@ -83,7 +89,7 @@ namespace
     cout << "3b: " << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
 
     // 4a. Prints the total	number of	successful queries
-    cout << "4a: " << endl;
+    cout << "4a: " << success_count(a_tree, db_filename) << endl;
 
     // 4b. Prints the	average	number of recursion calls
     cout << "4b: " << endl;
