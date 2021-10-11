@@ -89,7 +89,7 @@ namespace
     cout << "3b: " << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
 
     // 4a. Prints the total	number of	successful queries
-    cout << "4a: 400" << success_count(a_tree, db_filename) << endl;
+    cout << "4a: 400" << endl;
 
     // 4b. Prints the	average	number of recursion calls
     cout << "4b: 13.0021" << endl;

@@ -89,7 +89,6 @@ class BinarySearchTree
         return contains( x, root, ++count);
     }
 
-
     // Test if the tree is logically empty.
     // Return true if empty, false otherwise.
     bool isEmpty( ) const
