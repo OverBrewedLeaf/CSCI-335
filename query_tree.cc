@@ -15,7 +15,7 @@ namespace
 {
   // helper to retrieve sequence and acronyms from line
   // also removes the sequence/acronym from current line
-  string get_chunk_(string &line)
+  string GetSeqFromLine(string &line)
   {
     string temp = line.substr(0,line.find("/"));
     line = line.substr(line.find("/")+1);
@@ -43,15 +43,14 @@ namespace
     {
       if(line.empty()) 
         continue;
-      acryonym = get_chunk_(line);//map acronym
+      acryonym = GetSeqFromLine(line);//map acronym
       while(line.length() > 1)
       {
-        SequenceMap map(get_chunk_(line),acryonym);
+        SequenceMap map(GetSeqFromLine(line),acryonym);
         a_tree.insert(map);
       }
     }
     database.close();
-    // a_tree.printTree();
     string input = "";
     for(int i = 0; i < 3; i++)
     {

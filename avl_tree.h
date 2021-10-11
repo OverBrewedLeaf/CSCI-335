@@ -19,6 +19,8 @@ using namespace std;
 // boolean isEmpty( )     --> Return true if empty; else false
 // void makeEmpty( )      --> Remove all items
 // void printTree( )      --> Print tree in sorted order
+// string printSeq()      --> Print any sequence with matching enzyme
+// int total_Nodes()      --> Returns total nodes in tree
 // ******************ERRORS********************************
 // Throws UnderflowException as warranted
 
@@ -146,9 +148,15 @@ class AvlTree
         remove( x, root );
     }
 
-    // 
+    // Part 2(a)
     void printSeq(const string &input){
         printSeq(input, root);
+    }
+
+    // Part 2(b): 2
+    int total_Nodes()
+    {
+        return total_Nodes(root);
     }
 
   private:
@@ -183,6 +191,14 @@ class AvlTree
         }
     }
 
+    int total_Nodes(AvlNode *node){
+        if(node == nullptr){
+            cout << "fail";
+            return 0;
+        }
+        cout << "+1";
+        return 1 + total_Nodes(node->left) + total_Nodes(node->right);
+    }
 
     /**
      * Internal method to insert into a subtree.

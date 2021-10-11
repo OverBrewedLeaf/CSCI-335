@@ -67,9 +67,6 @@ run2bst:
 run2avl: 	
 		./$(PROGRAM_1) rebase210.txt sequences.txt AVL
 
-test:
-	g++ -o test.cc sequence_map.h
-
 
 
 #Clean obj files
