@@ -1,4 +1,4 @@
-// <Your name>
+// Jeffrey Li
 // Main file for Part2(a) of Homework 2.
 // Code will compile and run after you have completed sequence_map.h.
 
@@ -26,8 +26,7 @@ void QueryTree(const string &db_filename, TreeType &a_tree) {
 
 }  // namespace
 
-int
-main(int argc, char **argv) {
+int main(int argc, char **argv){
   if (argc != 3) {
     cout << "Usage: " << argv[0] << " <databasefilename> <tree-type>" << endl;
     return 0;

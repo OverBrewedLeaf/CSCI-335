@@ -7,16 +7,6 @@
 
 using namespace std;
 
-// SequenceMap class
-//
-// CONSTRUCTION: two parameter
-//
-// ******************PUBLIC OPERATIONS*********************
-// 
-// void printTree( )      --> Print tree in sorted order
-// ******************ERRORS********************************
-// Throws UnderflowException as warranted
-
 class SequenceMap{
     public:
         SequenceMap() = default;//Zero parameter constructor
@@ -25,11 +15,28 @@ class SequenceMap{
         SequenceMap& operator=(const SequenceMap &rhs) = default;//Copy Assignment
         SequenceMap(SequenceMap &rhs) = default;//Move Constructor
         SequenceMap& operator=(SequenceMap &&rhs) = default;//Move Assignment
-        bool operator<(const SequenceMap &rhs) const{
-            return 1;
-        }
-        SequenceMap(const string &a_rec_seq, const string &an_enz_acro){
 
+        SequenceMap(const string &a_rec_seq, const string &an_enz_acro)//Constructor: two string parameter
+        {
+            recognition_sequence_ = a_rec_seq;
+            enzyme_acronyms_.push_back(an_enz_acro);
+        }
+
+        bool operator<(const SequenceMap &rhs) const { return recognition_sequence_ < rhs.recognition_sequence_; }
+
+        friend ostream &operator<<(ostream &out,const SequenceMap &map){
+            for(string i: map.enzyme_acronyms_){
+                out << "[" + i + "], ";
+            }
+            out << "\n";
+        }
+        
+        void Merge(const SequenceMap &rhs)
+        {
+            for(auto x: rhs.enzyme_acronyms_)
+            {
+                enzyme_acronyms_.push_back(x);
+            }
         }
 
     private:
