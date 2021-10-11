@@ -46,9 +46,7 @@ class AvlTree
         makeEmpty( );
     }
 
-    /**
-     * Deep copy.
-     */
+    // Deep copy.
     AvlTree & operator=( const AvlTree & rhs )
     {
         AvlTree copy = rhs;
@@ -56,9 +54,7 @@ class AvlTree
         return *this;
     }
         
-    /**
-     * Move.
-     */
+    // Move
     AvlTree & operator=( AvlTree && rhs )
     {
         std::swap( root, rhs.root );
@@ -66,10 +62,8 @@ class AvlTree
         return *this;
     }
     
-    /**
-     * Find the smallest item in the tree.
-     * Throw UnderflowException if empty.
-     */
+    // Find the smallest item in the tree.
+    // Throw UnderflowException if empty.
     const Comparable & findMin( ) const
     {
         if( isEmpty( ) )
@@ -77,10 +71,8 @@ class AvlTree
         return findMin( root )->element;
     }
 
-    /**
-     * Find the largest item in the tree.
-     * Throw UnderflowException if empty.
-     */
+    // Find the largest item in the tree.
+    // Throw UnderflowException if empty.
     const Comparable & findMax( ) const
     {
         if( isEmpty( ) )
@@ -88,26 +80,20 @@ class AvlTree
         return findMax( root )->element;
     }
 
-    /**
-     * Returns true if x is found in the tree.
-     */
+    // Returns true if x is found in the tree.
     bool contains( const Comparable & x ) const
     {
         return contains( x, root );
     }
 
-    /**
-     * Test if the tree is logically empty.
-     * Return true if empty, false otherwise.
-     */
+    // Test if the tree is logically empty.
+    // Return true if empty, false otherwise.
     bool isEmpty( ) const
     {
         return root == nullptr;
     }
 
-    /**
-     * Print the tree contents in sorted order.
-     */
+    // Print the tree contents in sorted order.
     void printTree( ) const
     {
         if( isEmpty( ) )
@@ -116,33 +102,25 @@ class AvlTree
             printTree( root );
     }
 
-    /**
-     * Make the tree logically empty.
-     */
+    // Make the tree logically empty.
     void makeEmpty( )
     {
         makeEmpty( root );
     }
 
-    /**
-     * Insert x into the tree; duplicates are ignored.
-     */
+    // Insert x into the tree; duplicates are ignored.
     void insert( const Comparable & x )
     {
         insert( x, root );
     }
      
-    /**
-     * Insert x into the tree; duplicates are ignored.
-     */
+    // Insert x into the tree; duplicates are ignored.
     void insert( Comparable && x )
     {
         insert( std::move( x ), root );
     }
      
-    /**
-     * Remove x from the tree. Nothing is done if x is not found.
-     */
+    // Remove x from the tree. Nothing is done if x is not found.
     void remove( const Comparable & x )
     {
         remove( x, root );
