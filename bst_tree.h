@@ -159,6 +159,12 @@ class BinarySearchTree
         return total_Nodes(root);
     }
 
+    // Part 2(b): 3a
+    float avg_Depth()
+    {
+        return avg_Depth(root, 0) / total_Nodes();
+    }
+
   private:
     struct BinaryNode
     {
@@ -195,6 +201,14 @@ class BinarySearchTree
             return 0;
         }
         return 1 + total_Nodes(node->left) + total_Nodes(node->right);
+    }
+
+    // Helper for finding average depth
+    float avg_Depth(BinaryNode *node, float depth){
+        if( node == nullptr){
+            return 0;
+        }
+        return depth + avg_Depth(node->left, depth+1) + avg_Depth(node->right, depth+1);
     }
 
     /**

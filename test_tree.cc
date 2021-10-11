@@ -47,12 +47,6 @@ namespace
       }
     }
     database.close();
-    string input = "";
-    for(int i = 0; i < 3; i++)
-    {
-      cin >> input;
-      a_tree.printSeq(input);
-    }
   }
 
 
@@ -61,12 +55,12 @@ namespace
   void TestTree(const string &db_filename, const string &seq_filename, TreeType &a_tree)
   {
     // Code for running Part2(b)  
-
+    TreeConstruct(db_filename, a_tree);
     // 2. Prints the number of nodes in	your tree n.	
     cout << "2: " << a_tree.total_Nodes() << endl;
 
     // 3a. Prints	the	average	depth
-    cout << "3a: " << endl;
+    cout << "3a: " << a_tree.avg_Depth() << endl;
 
     // 3b. Prints the	ratio	of the	average	depth
     cout << "3b: " << endl;
