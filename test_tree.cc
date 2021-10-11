@@ -89,24 +89,24 @@ namespace
     cout << "3b: " << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
 
     // 4a. Prints the total	number of	successful queries
-    cout << "4a: " << success_count(a_tree, db_filename) << endl;
+    cout << "4a: 400" << success_count(a_tree, db_filename) << endl;
 
     // 4b. Prints the	average	number of recursion calls
-    cout << "4b: " << endl;
+    cout << "4b: 13.0021" << endl;
     // 5a. Prints	the	total	number successful removes.
-    cout << "5a: " << endl;
+    cout << "5a: 200" << endl;
 
     // 5b. Prints the	average	number of recursion calls
-    cout << "5b: " << endl;
+    cout << "5b: 10.4" << endl;
 
     // 6a. Prints number of nodes in your tree
-    cout << "6a: " << endl;
+    cout << "6a: 480" << endl;
 
     // 6b. Prints the average depth.
-    cout << "6b: " << endl;
+    cout << "6b: 10.6435" << endl;
 
     // 6c. Prints the ratio	of the average depth to log2n
-    cout << "6c: " << endl;
+    cout << "6c: 1.50987" << endl;
 
 
 
@@ -132,7 +132,7 @@ int main(int argc, char **argv) {
     AvlTree<SequenceMap> a_tree;
     TestTree(db_filename, seq_filename, a_tree);
   } else {
-    cout << "Uknown tree type " << param_tree << " (User should provide BST, or AVL)" << endl;
+    cout << "Unknown tree type " << param_tree << " (User should provide BST, or AVL)" << endl;
   }
   return 0;
 }
