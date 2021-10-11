@@ -296,7 +296,6 @@ class BinarySearchTree
             return contains( x, t->right, ++count);
         else
         {
-            ++count;
             return true;// Match
         }
     }

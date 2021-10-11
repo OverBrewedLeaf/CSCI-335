@@ -321,7 +321,6 @@ class AvlTree
             return contains( x, t->right, ++count);
         else
         {
-            ++count;
             return true;// Match
         }
     }
