@@ -1,3 +1,8 @@
+// Author: Jeffrey Li
+// Date 10/11/21
+// 
+
+
 #ifndef SEQUENCE_MAP_H
 #define SEQUENCE_MAP_H
 
@@ -26,9 +31,9 @@ class SequenceMap{
 
         friend ostream &operator<<(ostream &out,const SequenceMap &map){
             for(string i: map.enzyme_acronyms_){
-                out << "[" + i + "], ";
+                out << i + " ";
             }
-            out << "\n";
+            return out << "\n";
         }
         
         void Merge(const SequenceMap &rhs)
@@ -37,6 +42,15 @@ class SequenceMap{
             {
                 enzyme_acronyms_.push_back(x);
             }
+            return;
+        }
+
+        string getRecog() {return recognition_sequence_;}
+        void getAcro(){
+            for(string x: enzyme_acronyms_){
+                cout << x;
+            }
+            cout << endl;
         }
 
     private:

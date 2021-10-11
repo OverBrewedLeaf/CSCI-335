@@ -18,6 +18,7 @@ using namespace std;
 // boolean isEmpty( )     --> Return true if empty; else false
 // void makeEmpty( )      --> Remove all items
 // void printTree( )      --> Print tree in sorted order
+// string printSeq()      --> Print any sequence with matching enzyme
 // ******************ERRORS********************************
 // Throws UnderflowException as warranted
 
@@ -27,35 +28,28 @@ class BinarySearchTree
   public:
     BinarySearchTree( ) : root{ nullptr }
     {
+
     }
 
-    /**
-     * Copy constructor
-     */
+    // Copy constructor 
     BinarySearchTree( const BinarySearchTree & rhs ) : root{ nullptr }
     {
         root = clone( rhs.root );
     }
 
-    /**
-     * Move constructor
-     */
+    // Move constructor
     BinarySearchTree( BinarySearchTree && rhs ) : root{ rhs.root }
     {
         rhs.root = nullptr;
     }
     
-    /**
-     * Destructor for the tree
-     */
+    // Destructor for the tree
     ~BinarySearchTree( )
     {
         makeEmpty( );
     }
 
-    /**
-     * Copy assignment
-     */
+    // Copy assignment
     BinarySearchTree & operator=( const BinarySearchTree & rhs )
     {
         BinarySearchTree copy = rhs;
@@ -63,9 +57,7 @@ class BinarySearchTree
         return *this;
     }
         
-    /**
-     * Move assignment
-     */
+    // Move assignment
     BinarySearchTree & operator=( BinarySearchTree && rhs )
     {
         std::swap( root, rhs.root );       
@@ -155,6 +147,10 @@ class BinarySearchTree
         remove( x, root );
     }
 
+    // 
+    void printSeq(const string &input){
+        printSeq(input, root);
+    }
 
   private:
     struct BinaryNode
@@ -172,6 +168,20 @@ class BinarySearchTree
 
     BinaryNode *root;
 
+    // Helper for print sequence recursion
+    void printSeq(const string &input, BinaryNode *node) const
+    {
+        if ( node == nullptr) cout << "Not Found\n";
+        else if (input > node->element.getRecog()){
+            printSeq(input, node->right);
+        }
+        else if (input < node->element.getRecog()){
+            printSeq(input, node->left);
+        }
+        else {
+            node->element.getAcro();
+        }
+    }
 
     /**
      * Internal method to insert into a subtree.

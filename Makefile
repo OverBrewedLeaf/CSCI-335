@@ -48,9 +48,12 @@ $(PROGRAM_2): $(ALL_OBJ2)
 #Compiling all
 
 all: 	
+		make clean
+		clear
 		make $(PROGRAM_0)
 		make $(PROGRAM_1)
 		make $(PROGRAM_2)
+		clear
 
 run1bst: 	
 		./$(PROGRAM_0) rebase210.txt BST
@@ -63,6 +66,9 @@ run2bst:
 
 run2avl: 	
 		./$(PROGRAM_1) rebase210.txt sequences.txt AVL
+
+test:
+	g++ -o test.cc sequence_map.h
 
 
 

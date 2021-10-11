@@ -146,6 +146,11 @@ class AvlTree
         remove( x, root );
     }
 
+    // 
+    void printSeq(const string &input){
+        printSeq(input, root);
+    }
+
   private:
     struct AvlNode
     {
@@ -162,6 +167,21 @@ class AvlTree
     };
 
     AvlNode *root;
+
+    // Helper for print sequence recursion
+    void printSeq(const string &input, AvlNode *node) const
+    {
+        if ( node == nullptr) cout << "Not Found\n";
+        else if (input > node->element.getRecog()){
+            printSeq(input, node->right);
+        }
+        else if (input < node->element.getRecog()){
+            printSeq(input, node->left);
+        }
+        else {
+            node->element.getAcro();
+        }
+    }
 
 
     /**

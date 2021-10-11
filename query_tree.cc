@@ -8,21 +8,58 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
-namespace {
+namespace
+{
+  // helper to retrieve sequence and acronyms from line
+  // also removes the sequence/acronym from current line
+  string get_chunk_(string &line)
+  {
+    string temp = line.substr(0,line.find("/"));
+    line = line.substr(line.find("/")+1);
+    return temp;
+  }
+  // @db_filename: an input filename.
+  // @a_tree: an input tree of the type TreeType. It is assumed to be
+  //  empty.
+  template <typename TreeType>
+  void QueryTree(const string &db_filename, TreeType &a_tree) {
+    // Code for running Part2(a)
+    // Parse input file @db_filename and feel tree @a_tree
+    // Then prompt the user for exactly three strings (do a loop) and
+    // provide the results of find() as described in the assignment.
 
+    ifstream database(db_filename);
+    string line = "";
+    for(int i = 0; i < 10; i++)//skips first 10 lines
+    {
+      getline(database,line);
+    }
 
-// @db_filename: an input filename.
-// @a_tree: an input tree of the type TreeType. It is assumed to be
-//  empty.
-template <typename TreeType>
-void QueryTree(const string &db_filename, TreeType &a_tree) {
-  // Code for running Part2(a)
-  // Parse input file @db_filename and feel tree @a_tree
-  // Then prompt the user for exactly three strings (do a loop) and
-  // provide the results of find() as described in the assignment.
-}
+    string acryonym = "";
+    while (getline(database, line))
+    {
+      if (line.empty()) continue;
+
+      acryonym = get_chunk_(line);//map acronym
+      while(line != "/")
+      {
+        SequenceMap something(get_chunk_(line),acryonym);
+        a_tree.insert(something);
+      }
+    }
+    database.close();
+
+    string input = "";
+    for(int i = 0; i < 3; i++)
+    {
+      cin >> input;
+      a_tree.printSeq(input);
+    }
+
+  }
 
 }  // namespace
 
