@@ -124,9 +124,9 @@ class BinarySearchTree
     }
     
     // Remove x from the tree. Nothing is done if x is not found.
-    void remove( const Comparable & x )
+    void remove( const Comparable & x, int &count, int &min) 
     {
-        remove( x, root );
+        remove( x, root , count, min);
     }
 
     // Part 2(a)
@@ -234,18 +234,18 @@ class BinarySearchTree
      * t is the node that roots the subtree.
      * Set the new root of the subtree.
      */
-    void remove( const Comparable & x, BinaryNode * & t )
+    void remove( const Comparable & x, BinaryNode * & t, int &count, int &min) 
     {
         if( t == nullptr )
             return;   // Item not found; do nothing
         if( x < t->element )
-            remove( x, t->left );
+            remove( x, t->left , ++count, min);
         else if( t->element < x )
-            remove( x, t->right );
+            remove( x, t->right, ++count, min);
         else if( t->left != nullptr && t->right != nullptr ) // Two children
         {
-            t->element = findMin( t->right )->element;
-            remove( t->element, t->right );
+            t->element = findMin( t->right, ++min )->element;
+            remove( t->element, t->right, ++count, min );
         }
         else
         {
@@ -259,13 +259,13 @@ class BinarySearchTree
      * Internal method to find the smallest item in a subtree t.
      * Return node containing the smallest item.
      */
-    BinaryNode * findMin( BinaryNode *t ) const
+    BinaryNode * findMin( BinaryNode *t, int &count ) const
     {
         if( t == nullptr )
             return nullptr;
         if( t->left == nullptr )
             return t;
-        return findMin( t->left );
+        return findMin(t->left, ++count);
     }
 
     /**

@@ -88,6 +88,33 @@ namespace
     return count;
   }
 
+  // @a_tree: type of tree
+  // @seq_filename: inputted sequences
+  // returns the amount of every other removed sequence.
+  template <typename TreeType>
+  int success_remove(TreeType &a_tree, const string &seq_filename)
+  {
+    ifstream input(seq_filename);
+    string sequence;
+    int count = 0;
+    int min = 0;
+    int temp = 0;
+    bool toggle = true;
+    while (getline(input, sequence))
+    {
+      if (toggle){
+        SequenceMap map(sequence, "");
+        if (a_tree.contains(map, temp))
+        {
+          a_tree.remove(map, count, min);
+        }
+      }
+      toggle = !toggle;
+    }
+    input.close();
+    return count + min;
+  }
+
   // @db_filename: inputted file name for database
   // @seq_file: inputted sequences
   // @a_tree: type of tree, either avl or BST
@@ -111,11 +138,14 @@ namespace
 
     // 4b. Prints the	average	number of recursion calls
     cout << "4b: " << total_query(a_tree, seq_filename) / success_query(a_tree, seq_filename) << endl;
+    
+    int num_Nodes = a_tree.total_Nodes();
+    float total_remove = success_remove(a_tree, seq_filename);
     // 5a. Prints	the	total	number successful removes.
-    cout << "5a: Not Done" << endl;
+    cout << "5a: " << num_Nodes - a_tree.total_Nodes() << endl;
 
     // 5b. Prints the	average	number of recursion calls
-    cout << "5b: Not Done" << endl;
+    cout << "5b: " << total_remove / (num_Nodes - a_tree.total_Nodes()) << endl;
 
     // 6a. Prints number of nodes in your tree
     cout << "6a: Not Done" << endl;
