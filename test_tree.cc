@@ -148,13 +148,13 @@ namespace
     cout << "5b: " << total_remove / (num_Nodes - a_tree.total_Nodes()) << endl;
 
     // 6a. Prints number of nodes in your tree
-    cout << "6a: Not Done" << endl;
+    cout << "6a: " << a_tree.total_Nodes() << endl;
 
     // 6b. Prints the average depth.
-    cout << "6b: Not Done" << endl;
+    cout << "6b: " << a_tree.avg_Depth() << endl;
 
     // 6c. Prints the ratio	of the average depth to log2n
-    cout << "6c: Not Done" << endl;
+    cout << "6c: Not Done" << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
 
 
 
