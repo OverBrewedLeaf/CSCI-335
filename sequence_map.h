@@ -1,6 +1,6 @@
 // Author: Jeffrey Li
 // Date 10/11/21
-// BinarySearchTree class
+// Sequence Map Class
 //
 // CONSTRUCTION: zero parameter
 //

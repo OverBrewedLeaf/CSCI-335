@@ -1,3 +1,6 @@
+// Author: Jeffrey Li
+// Date 10/11/21
+// Code for AVL Trees
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
 
@@ -21,6 +24,7 @@ using namespace std;
 // void printTree( )      --> Print tree in sorted order
 // string printSeq()      --> Print any sequence with matching enzyme
 // int total_Nodes()      --> Returns total nodes in tree
+// float avg_Depth()      --> Returns average depth of the tree
 // ******************ERRORS********************************
 // Throws UnderflowException as warranted
 

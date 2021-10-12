@@ -1,6 +1,6 @@
-// Jeffrey Li
-// Main file for Part2(b) of Homework 2.
-// Code will compile and run after you have completed sequence_map.h.
+// Author: Jeffrey Li
+// Date 10/11/21
+// Main file for Part2v of Homework 2.
 
 #include "avl_tree_mod.h"
 #include "bst_tree.h"

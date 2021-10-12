@@ -1,4 +1,5 @@
-// Jeffrey Li
+// Author: Jeffrey Li
+// Date 10/11/21
 // Main file for Part2(a) of Homework 2.
 // Code will compile and run after you have completed sequence_map.h.
 
@@ -51,6 +52,8 @@ namespace
       }
     }
     database.close();
+
+    //asks for user input
     string input = "";
     for(int i = 0; i < 3; i++)
     {
