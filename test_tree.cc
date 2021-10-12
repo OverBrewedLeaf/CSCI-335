@@ -154,7 +154,7 @@ namespace
     cout << "6b: " << a_tree.avg_Depth() << endl;
 
     // 6c. Prints the ratio	of the average depth to log2n
-    cout << "6c: Not Done" << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
+    cout << "6c: " << a_tree.avg_Depth() / log2(a_tree.total_Nodes()) << endl;
 
 
 
