@@ -1,4 +1,4 @@
-Finished  tasks 1-2(b): 3b
+Finished  tasks 1 and 2a-b
 
 I ran into issues attempting to trace through the contains function
 
