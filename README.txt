@@ -1,7 +1,8 @@
 Finished  tasks 1 and 2a-b
 
 I ran into issues attempting to trace through the contains function
-and finding a way to return total calls from functions like remove
+and finding a way to return total calls from functions like remove.
+I also ran into a lot of const issues.
 
 To run program:
     make clean

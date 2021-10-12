@@ -1,6 +1,6 @@
 // Author: Jeffrey Li
 // Date 10/11/21
-// Main file for Part2v of Homework 2.
+// Main file for Part2c of Homework 2.
 
 #include "avl_tree_mod.h"
 #include "bst_tree.h"
