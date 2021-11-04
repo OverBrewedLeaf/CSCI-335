@@ -50,11 +50,14 @@ class HashTable {
   
   void MakeEmpty() {
     current_size_ = 0;
+    total_elements_ = 0;
+    total_collisions_ = 0;
     for (auto &entry : array_)
       entry.info_ = EMPTY;
   }
 
   bool Insert(const HashedObj & x) {
+    total_elements_++;
     // Insert x as active
     size_t current_pos = FindPos(x);
     if (IsActive(current_pos))
@@ -94,6 +97,31 @@ class HashTable {
     return true;
   }
 
+  size_t GetTotalElements(){
+    return total_elements_;
+  }
+
+  size_t GetTotalCollisions(){
+    return total_collisions_;
+  }
+
+  size_t GetCurrentSize(){
+    return current_size_;
+  }
+
+  size_t GetTableSize(){
+    return array_.size();
+  }
+
+  size_t GetTempSize(){
+    return temp_collisions_;
+  }
+
+  bool Query(const HashedObj &x){
+    size_t current_pos = FindPos(x);
+    return IsActive(current_pos);
+  }
+
  private:        
   struct HashEntry {
     HashedObj element_;
@@ -108,22 +136,28 @@ class HashTable {
     
 
   std::vector<HashEntry> array_;
+  size_t total_elements_;
   size_t current_size_;
+  size_t total_collisions_;
+  size_t temp_collisions_;
 
   bool IsActive(size_t current_pos) const
   { return array_[current_pos].info_ == ACTIVE; }
 
-  size_t FindPos(const HashedObj & x) const {
+  size_t FindPos(const HashedObj & x)  {
     size_t offset = 1;
     size_t current_pos = InternalHash(x);
+    temp_collisions_ = 1;
       
     while (array_[current_pos].info_ != EMPTY &&
 	   array_[current_pos].element_ != x) {
+      temp_collisions_++;
       current_pos += offset;  // Compute ith probe.
       offset += 2;
       if (current_pos >= array_.size())
-	current_pos -= array_.size();
+	      current_pos -= array_.size();
     }
+    total_collisions_ += temp_collisions_ - 1;
     return current_pos;
   }
 
@@ -137,9 +171,11 @@ class HashTable {
     
     // Copy table over.
     current_size_ = 0;
-    for (auto & entry :old_array)
-      if (entry.info_ == ACTIVE)
-	Insert(std::move(entry.element_));
+    for (auto & entry :old_array){
+      if (entry.info_ == ACTIVE){
+	      Insert(std::move(entry.element_));
+      }
+    }
   }
   
   size_t InternalHash(const HashedObj & x) const {

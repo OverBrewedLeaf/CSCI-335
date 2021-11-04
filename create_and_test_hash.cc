@@ -22,21 +22,29 @@ void TestFunctionForHashTable(HashTableType &hash_table, const string &words_fil
     hash_table.MakeEmpty();
     //..Insert your own code
 
+    fstream word_file(words_filename);
+    fstream query_file(query_filename);
+    string line;
+    while (word_file >> line)
+    {
+        hash_table.Insert(line);
+    }
 
-    cout << "number_of_elements: " << 1 << "\n";
-    cout << "size_of_table: " << 1 << "\n";
-    cout << "load_factor: " << 1 << "\n";
-    cout << "average_collisions: " << 1 << "\n";
-    cout << "total_collisions: " << 1 << "\n\n";
+    cout << "number_of_elements: " << hash_table.GetTotalElements() << "\n";
+    cout << "size_of_table: " << hash_table.GetTableSize() << "\n";
+    cout << "load_factor: " << (double)hash_table.GetTotalElements()/hash_table.GetTableSize() << "\n";
+    cout << "average_collisions: " << (double)hash_table.GetTotalCollisions()/hash_table.GetTotalElements() << "\n";
+    cout << "total_collisions: " << hash_table.GetTotalCollisions() << "\n\n";
 
-    for(size_t i = 0; i < 1; i++){
-        cout << "something";
-        if(true){
-            cout << " Found " << "Coll Num\n";
+    while(query_file >> line){
+        cout << line;
+        if(hash_table.Query(line)){
+            cout << " Found ";
         }
         else{
-            cout << " Not_Found " << "Coll Num\n";
+            cout << " Not_Found ";
         }
+        cout << hash_table.GetTempSize() << "\n";
     }
 
 }
@@ -55,7 +63,7 @@ int testHashingWrapper(int argument_count, char **argument_list) {
     }
 
     if (param_flag == "linear") {
-      // Uncomment below when you have implemented linear probing.
+    //   Uncomment below when you have implemented linear probing.
       HashTableLinear<string> linear_probing_table;
       TestFunctionForHashTable(linear_probing_table, words_filename, query_filename);
     } else if (param_flag == "quadratic") {
