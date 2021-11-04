@@ -4,7 +4,7 @@
 #include <string>
 
 // Uncomment when you implemented linear probing & double hashing
-// #include "linear_probing.h"
+#include "linear_probing.h"
 //#include "double_hashing.h"
 
 #include "quadratic_probing.h"
@@ -18,11 +18,26 @@ using namespace std;
 // @words_filename: a filename of input words to construct the hash table
 // @query_filename: a filename of input words to test the hash table
 template <typename HashTableType>
-void TestFunctionForHashTable(HashTableType &hash_table,
-			      const string &words_filename,
-			      const string &query_filename) {
+void TestFunctionForHashTable(HashTableType &hash_table, const string &words_filename, const string &query_filename) {
     hash_table.MakeEmpty();
     //..Insert your own code
+
+
+    cout << "number_of_elements: " << 1 << "\n";
+    cout << "size_of_table: " << 1 << "\n";
+    cout << "load_factor: " << 1 << "\n";
+    cout << "average_collisions: " << 1 << "\n";
+    cout << "total_collisions: " << 1 << "\n\n";
+
+    for(size_t i = 0; i < 1; i++){
+        cout << "something";
+        if(true){
+            cout << " Found " << "Coll Num\n";
+        }
+        else{
+            cout << " Not_Found " << "Coll Num\n";
+        }
+    }
 
 }
 
@@ -41,9 +56,8 @@ int testHashingWrapper(int argument_count, char **argument_list) {
 
     if (param_flag == "linear") {
       // Uncomment below when you have implemented linear probing.
-      // HashTableLinear<string> linear_probing_table;
-      // TestFunctionForHashTable(linear_probing_table, words_filename,
-      // 			 query_filename);
+      HashTableLinear<string> linear_probing_table;
+      TestFunctionForHashTable(linear_probing_table, words_filename, query_filename);
     } else if (param_flag == "quadratic") {
 	HashTable<string> quadratic_probing_table;
 	TestFunctionForHashTable(quadratic_probing_table, words_filename,
