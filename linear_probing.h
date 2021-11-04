@@ -22,6 +22,8 @@ class HashTableLinear{
 
     void MakeEmpty() {
         current_size_ = 0;
+        total_elements_ = 0;
+        total_collisions_ = 0;
         for(auto &entry : array_)
             entry.info_ = EMPTY;
     }
@@ -59,6 +61,9 @@ class HashTableLinear{
         return true;
     }
 
+
+
+
     private:
     struct HashEntry{
         HashedObj element_;
@@ -71,22 +76,20 @@ class HashTableLinear{
 
     std::vector<HashEntry> array_;
     size_t current_size_;
+    size_t total_elements_;
+    size_t total_collisions_;
 
     bool IsActive(size_t current_pos) const{
         return array_[current_pos].info == ACTIVE;
     }
 
     size_t FindPos(const HashedObj &x) const{
-        size_t offset = 1;
-        size_t current_pos = InternalHash(x);
-
-        while(array_[current_pos].element_ != EMPTY && array_[current_pos].element_ != x){
-            current_pos += offset;
-            offset += 2;
-            if(current_pos >= array_.size())
-                current_pos -= array_.size();
+        for(size_t i = InternalHash(x);; i++){
+            total_collisions_++;
+            if(array_[current_pos].element_ == x && array_[i].element_ != EMPTY)
+                return i;
         }
-        return current_pos;
+        return array_.size();
     }
 
     void Rehash(){
