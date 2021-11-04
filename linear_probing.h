@@ -1,3 +1,8 @@
+/*  Author: Jeffrey Li
+*   
+*   To use linear probing for a hash table
+*   
+*/
 #ifndef LINEAR_PROBING_H
 #define LINEAR_PROBING_H
 
@@ -15,8 +20,8 @@ class HashTableLinear{
     {
         MakeEmpty();
     }
-
-    bool Contains(const HashedObj &x) const {
+    // to check if x is within the hash table.
+    bool Contains(const HashedObj &x) {
         return IsActive(FindPos(x));
     }
 
@@ -29,6 +34,7 @@ class HashTableLinear{
     }
 
     bool Insert(const HashedObj &x){
+        total_elements_++;
         size_t current_pos = FindPos(x);
         if (IsActive(current_pos)){
             return false;
@@ -36,8 +42,9 @@ class HashTableLinear{
         array_[current_pos].element_ = x;
         array_[current_pos].info_ = ACTIVE;
 
-        if(++current_size_ > array_.size()/2)
+        if(++current_size_ > array_.size()/2){
             Rehash();
+        }
         return true;
     }
 
@@ -45,8 +52,9 @@ class HashTableLinear{
         size_t current_pos = FindPos(x);
         if(IsActive(current_pos))
             return false;
+        
         array_[current_pos] = std::move(x);
-        array_[current_pos].info = ACTIVE;
+        array_[current_pos].info_ = ACTIVE;
 
         if(++current_size_ > array_.size()/2)
             Rehash();
@@ -60,9 +68,26 @@ class HashTableLinear{
         array_[current_pos].info_ = DELETED;
         return true;
     }
+    //Getter methods for variables
+    size_t GetTotalElements(){
+        return total_elements_;
+    }
 
+    size_t GetTotalCollisions(){
+        return total_collisions_;
+    }
 
+    size_t GetCurrentSize(){
+        return current_size_;
+    }
 
+    size_t GetTableSize(){
+        return array_.size();
+    }
+
+    size_t GetTempSize(){
+        return temp_collisions_;
+    }
 
     private:
     struct HashEntry{
@@ -78,18 +103,28 @@ class HashTableLinear{
     size_t current_size_;
     size_t total_elements_;
     size_t total_collisions_;
+    size_t temp_collisions_;
 
     bool IsActive(size_t current_pos) const{
-        return array_[current_pos].info == ACTIVE;
+        return array_[current_pos].info_ == ACTIVE;
     }
 
-    size_t FindPos(const HashedObj &x) const{
-        for(size_t i = InternalHash(x);; i++){
-            total_collisions_++;
-            if(array_[current_pos].element_ == x && array_[i].element_ != EMPTY)
-                return i;
+    size_t FindPos(const HashedObj &x) {
+        temp_collisions_ = 1;
+        size_t offset = 1;
+        size_t current_pos = InternalHash(x);
+        while (array_[current_pos].info_ != EMPTY && array_[current_pos].element_ != x)
+        {
+            temp_collisions_++;
+            current_pos += offset;
+            offset += 2;
+            if(current_pos >= array_.size()){
+                current_pos -= array_.size();
+            }
         }
-        return array_.size();
+        
+        total_collisions_ += temp_collisions_ - 1;
+        return current_pos;
     }
 
     void Rehash(){

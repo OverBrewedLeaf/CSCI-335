@@ -38,7 +38,7 @@ void TestFunctionForHashTable(HashTableType &hash_table, const string &words_fil
 
     while(query_file >> line){
         cout << line;
-        if(hash_table.Query(line)){
+        if(hash_table.Contains(line)){
             cout << " Found ";
         }
         else{

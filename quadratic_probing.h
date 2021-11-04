@@ -44,7 +44,7 @@ class HashTable {
   explicit HashTable(size_t size = 101) : array_(NextPrime(size))
     { MakeEmpty(); }
   
-  bool Contains(const HashedObj & x) const {
+  bool Contains(const HashedObj & x) {
     return IsActive(FindPos(x));
   }
   
@@ -117,10 +117,6 @@ class HashTable {
     return temp_collisions_;
   }
 
-  bool Query(const HashedObj &x){
-    size_t current_pos = FindPos(x);
-    return IsActive(current_pos);
-  }
 
  private:        
   struct HashEntry {
