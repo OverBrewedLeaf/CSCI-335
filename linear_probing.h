@@ -111,13 +111,11 @@ class HashTableLinear{
 
     size_t FindPos(const HashedObj &x) {
         temp_collisions_ = 1;
-        size_t offset = 1;
         size_t current_pos = InternalHash(x);
         while (array_[current_pos].info_ != EMPTY && array_[current_pos].element_ != x)
         {
             temp_collisions_++;
-            current_pos += offset;
-            offset += 2;
+            current_pos++;
             if(current_pos >= array_.size()){
                 current_pos -= array_.size();
             }
