@@ -5,7 +5,7 @@
 
 // Uncomment when you implemented linear probing & double hashing
 #include "linear_probing.h"
-//#include "double_hashing.h"
+#include "double_hashing.h"
 
 #include "quadratic_probing.h"
 
@@ -73,9 +73,9 @@ int testHashingWrapper(int argument_count, char **argument_list) {
     } else if (param_flag == "double") {
 	cout << "r_value: " << R << endl;
         // Uncomment below when you have implemented double hashing.
-	// HashTableDouble<string> double_probing_table;
-	// TestFunctionForHashTable(double_probing_table, words_filename,
-	// 			 query_filename);
+	HashTableDouble<string> double_probing_table;
+	TestFunctionForHashTable(double_probing_table, words_filename,
+				 query_filename);
     } else {
 	cout << "Unknown tree type " << param_flag
 	     << " (User should provide linear, quadratic, or double)" << endl;

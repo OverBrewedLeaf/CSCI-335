@@ -6,7 +6,7 @@
 #ifndef LINEAR_PROBING_H
 #define LINEAR_PROBING_H
 
-#include "quadratic_probing.h"
+#include "quadratic_probing.h"// for namespace
 #include <vector>
 #include <algorithm>
 #include <functional>
