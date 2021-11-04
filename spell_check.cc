@@ -1,4 +1,4 @@
-// YOUR NAME.
+// Jeffrey Li
 // spell_check.cc: A simple spell checker.
 
 #include <fstream>
