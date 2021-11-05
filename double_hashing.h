@@ -118,10 +118,10 @@ class HashTableDouble{
         while(array_[current_pos].info_ != EMPTY && array_[current_pos].element_ != x)
         {
             temp_collisions_++;
+            total_collisions_++;
             current_pos += (r_value - hashed(x)%r_value);
             current_pos %= array_.size();
         }
-        total_collisions_ += temp_collisions_ - 1;
         return current_pos;
     }
 
