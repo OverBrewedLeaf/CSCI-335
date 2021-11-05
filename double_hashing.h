@@ -16,13 +16,13 @@ class HashTableDouble{
     public:
     enum EntryType {ACTIVE, EMPTY, DELETED};
 
-    explicit HashTableDouble(size_t size = 101) : array_(NextPrime(size)), r_value(87)
+    explicit HashTableDouble(size_t size = 101) : array_(NextPrime(size)), r_value(100)
     {
         MakeEmpty();
     }
 
     // to check if x is within the hash table.
-    bool Contains(const HashedObj &x) {
+    bool Contains(HashedObj &x) {
         return IsActive(FindPos(x));
     }
     
@@ -100,8 +100,8 @@ class HashTableDouble{
         HashEntry(HashedObj &&e, EntryType i = EMPTY) : element_{std::move(e)}, info_{i} {}
     };
 
-    const int r_value;
     std::vector<HashEntry> array_;
+    const int r_value;
     size_t current_size_;
     size_t total_elements_;
     size_t total_collisions_;
