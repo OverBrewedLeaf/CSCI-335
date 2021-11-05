@@ -16,7 +16,7 @@ class HashTableDouble{
     public:
     enum EntryType {ACTIVE, EMPTY, DELETED};
 
-    explicit HashTableDouble(size_t size = 101) : array_(NextPrime(size)), r_value(100)
+    explicit HashTableDouble(size_t size = 101) : array_(NextPrime(size)), r_value(65)
     {
         MakeEmpty();
     }
@@ -104,7 +104,7 @@ class HashTableDouble{
     const int r_value;
     size_t current_size_;
     size_t total_elements_;
-    size_t total_collisions_;
+    mutable size_t total_collisions_;
     size_t temp_collisions_;
 
     bool IsActive(size_t current_pos) const{
