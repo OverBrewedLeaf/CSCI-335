@@ -1,3 +1,8 @@
+/*  
+*   Author: Jeffrey Li
+*   
+*   To use quadratic probing for a hash table
+*/
 #ifndef QUADRATIC_PROBING_H
 #define QUADRATIC_PROBING_H
 
@@ -134,7 +139,7 @@ class HashTable {
   std::vector<HashEntry> array_;
   size_t total_elements_;
   size_t current_size_;
-  size_t total_collisions_;
+  mutable size_t total_collisions_;
   size_t temp_collisions_;
 
   bool IsActive(size_t current_pos) const

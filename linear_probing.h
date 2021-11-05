@@ -1,7 +1,7 @@
-/*  Author: Jeffrey Li
+/*  
+*   Author: Jeffrey Li
 *   
 *   To use linear probing for a hash table
-*   
 */
 #ifndef LINEAR_PROBING_H
 #define LINEAR_PROBING_H
@@ -102,7 +102,7 @@ class HashTableLinear{
     std::vector<HashEntry> array_;
     size_t current_size_;
     size_t total_elements_;
-    size_t total_collisions_;
+    mutable size_t total_collisions_;
     size_t temp_collisions_;
 
     bool IsActive(size_t current_pos) const{

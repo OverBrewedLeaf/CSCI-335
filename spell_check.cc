@@ -12,6 +12,9 @@ using namespace std;
 
 // You can add more functions here.
 
+// CaseA: Insert a character somewhere within the string to find a match within dictionary.
+// @dictionary: dictionary used from input throughout the whole code
+// @x: the string that was inputted incorrectly
 bool CaseA(HashTableDouble<string>& dictionary, string x)
 {
   int corrected = 0;
@@ -32,6 +35,9 @@ bool CaseA(HashTableDouble<string>& dictionary, string x)
   return corrected > 0;
 } 
 
+// CaseB: Removes a character somewhere within the string to find a match within dictionary.
+// @dictionary: dictionary used from input throughout the whole code
+// @x: the string that was inputted incorrectly
 bool CaseB(HashTableDouble<string>& dictionary, string x)
 {
   int corrected = 0;
@@ -47,7 +53,9 @@ bool CaseB(HashTableDouble<string>& dictionary, string x)
   return corrected > 0;
 } 
 
-
+// CaseC: Swaps the position of two adjacent characters to find a match within dictionary.
+// @dictionary: dictionary used from input throughout the whole code
+// @x: the string that was inputted incorrectly
 bool CaseC(HashTableDouble<string>& dictionary, string x)
 {
   int corrected = 0;
@@ -63,7 +71,7 @@ bool CaseC(HashTableDouble<string>& dictionary, string x)
   return corrected > 0;
 } 
 // Creates and fills double hashing hash table with all words from
-// dictionary_file
+// @dictionary_file: string for file name
 HashTableDouble<string> MakeDictionary(const string &dictionary_file) {
   HashTableDouble<string> dictionary_hash;
   // Fill dictionary_hash.
