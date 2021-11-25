@@ -1,5 +1,6 @@
 // Code from textbook
 // Modified by: Jeffrey Li
+// Sorting Code
 
 #ifndef SORT_H
 #define SORT_H
@@ -212,6 +213,7 @@ void merge( vector<Comparable> & a, vector<Comparable> & tmpArray,
  * leftPos is the left-most index of the subarray.
  * rightPos is the index of the start of the second half.
  * rightEnd is the right-most index of the subarray.
+ * less_than is the comparator
  */
 template <typename Comparable, typename Comparator>
 void merge( vector<Comparable> & a, vector<Comparable> & tmpArray,

@@ -1,6 +1,6 @@
 // Homework 4
 // Testing Sorting Algorithms
-// YOUR NAME
+// Jeffrey Li
 
 #include "Sort.h"
 #include <chrono>

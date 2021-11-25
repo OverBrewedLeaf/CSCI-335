@@ -1,3 +1,4 @@
-# Jeffrey Li
-# Hunter College
-# CSCI 335
+Finished all parts
+
+To compile program:
+    make all
