@@ -3,12 +3,10 @@
 #include <string>
 #include <fstream>
 
-
 #include "graph.h"
 
 using namespace std;
 
-template <typename DistType>
 int graphTestDriver(int argc, char **argv) {
     
     //Begin your code here. Feel free to add any helper functions or classes you need,
@@ -20,7 +18,7 @@ int graphTestDriver(int argc, char **argv) {
 
     getline(input_file,line);
 
-    Graph<DistType> graph(stoi(line));
+    Graph<float> graph(stoi(line));
 
 
     while(getline(input_file,line))
@@ -28,7 +26,7 @@ int graphTestDriver(int argc, char **argv) {
       stringstream stream(line);
       int vertex = 0;
       int vertexid = 0;
-      DistType weight = 0;
+      float weight = 0;
 
       stream >> vertex;
       
@@ -41,8 +39,6 @@ int graphTestDriver(int argc, char **argv) {
         }
       }
     }
-    // std::cout << "after inserting Graph is" << std::endl;
-    // graph.printGraph();
 
     while(getline(query_file,line))
     {
@@ -54,7 +50,6 @@ int graphTestDriver(int argc, char **argv) {
       graph.connection(start,end);
       cout << endl;
     }
-    // graph.printGraph();
 
 
     return 0;
@@ -66,7 +61,7 @@ int main(int argc, char **argv) {
       return 0;
     }
 
-    graphTestDriver<float>(argc, argv);
+    graphTestDriver(argc, argv);
 
     return 0;
 }
