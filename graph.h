@@ -6,6 +6,8 @@
 #include <iomanip>
 #include <iostream>
 
+using namespace std;
+
 //This file is for your graph implementation.
 //Add everything you need in between the "ifndef and "endif" statements.
 //Do not put anything outside those statements
@@ -14,7 +16,7 @@ template <typename DistType>
 class Vertex
 {
     private:
-    std::vector<Vertex<DistType>> adjacent_;
+    vector<Vertex<DistType>> adjacent_;
     DistType distance_;//currently same as weight
 
 
@@ -36,15 +38,15 @@ class Vertex
 
     void insert(size_t vertex, DistType distance)
     {
-        // std::cout << "inside insert function vertex- " << vertex << "   distance- " << distance << std::endl;
+        // cout << "inside insert function vertex- " << vertex << "   distance- " << distance << endl;
         if(adjacent_.size() <= vertex)
         {
             adjacent_.resize(vertex+2);
         }
-        // std::cout << "\t adjacent size is " << adjacent_.size() << std::endl;
+        // cout << "\t adjacent size is " << adjacent_.size() << endl;
         adjacent_[vertex] = Vertex<DistType>(distance);
         // adjacent_.insert(vertex,Vertex<DistType>(distance));
-        // std::cout << "inside insert adjacent_ is " << adjacent_.size() << std::endl;
+        // cout << "inside insert adjacent_ is " << adjacent_.size() << endl;
     }
     string printVertex(){
         string result = "distance: " + to_string(distance_) + "\n";
@@ -56,9 +58,9 @@ class Vertex
 
     string adjacent(size_t end)
     {
-        string result = ""
-        // std::cout << "the adjacent_ size is " << adjacent_.size() << std::endl;
-        // std::cout << printVertex() << std::endl;
+        string result = "";
+        // cout << "the adjacent_ size is " << adjacent_.size() << endl;
+        // cout << printVertex() << endl;
         if (adjacent_.size() < end)
             result += "not_connected";
         else if(adjacent_[end].getDistance() != 0)
@@ -89,14 +91,14 @@ class Graph
         vertex_[vertex].insert(vertexid,distance);
     }
     void printGraph(){
-        std::cout << "entered print graph " << std::endl;
-        std::cout << "size is " << size_ << std::endl;
+        cout << "entered print graph " << endl;
+        cout << "size is " << size_ << endl;
         for(int i=0; i<size_; i++){
-            std::cout << "i = " << i << std::endl;
-            std::cout << vertex_[i].printVertex() << std::endl;
+            cout << "i = " << i << endl;
+            cout << vertex_[i].printVertex() << endl;
         }
     }
-    void connection(int start,int end)
+    string connection(int start,int end)
     {
         return vertex_[start].adjacent(end);
     }
