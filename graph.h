@@ -21,7 +21,7 @@ template <typename DistType>
 class Vertex
 {
     private:
-    
+
     vector<Vertex<DistType>> adjacent_;
     DistType weight_ = 0;
     DistType distance_ = numeric_limits<DistType>::max();
@@ -48,6 +48,7 @@ class Vertex
         adjacentSize_++;
         adjacent_[vertex] = Vertex<DistType>(weight);
     }
+
     string printVertex(){//debug
         string result = "weight: " + to_string(weight_) + "\n";
         for (size_t i = 0; i < adjacent_.size(); i++){
@@ -66,6 +67,10 @@ class Vertex
             cout << fixed << setprecision(1) << adjacent_[end].getWeight();
         }
         else cout << "not_connected";
+    }
+
+    bool operator<(const Vertex &compare) const {
+        return distance_ < compare.distance_;
     }
 
 } ;
@@ -96,7 +101,11 @@ class Graph
         vertex_ = new Vertex<DistType>[size+1];
         size_ = size;
     }
-    ~Graph(){};
+    ~Graph()
+    {
+        delete []vertex_;
+        size_ = 0;
+    }
 
     void insert(int vertex, int vertexid, DistType weight)
     {
@@ -110,12 +119,37 @@ class Graph
             cout << vertex_[i].printVertex() << endl;
         }
     }
-    void connection(int start,int end)
+    void connection(int start,int end){ vertex_[start].adjacent(end); }
+
+    size_t getSize(){ return size_; }
+
+    void heap(size_t start)
     {
-        vertex_[start].adjacent(end);
+        BinaryHeap<Vertex<DistType>> heap;
+        heap.insert(start);
+        vertex_[start].setDistance(0);
+        while(!heap.isEmpty())
+        {
+            Vertex<DistType> min = heap.findMin();
+            heap.deleteMin();
+            min.setKnown(true);
+            for(unsigned int i = 0; i < min.getAdjacentSize(); i++)
+            {
+                
+            }
+        }
     }
+
+    // void findPath(size_t start, size_t end)
+    // {
+    //     int cost = findCost(start,end);
+
+        
+        
+    //     if(cost == numeric_limits<DistType>::max()) cout << "not_possible";
+    //     else cout << findPath(size_t start, size_t end) << "cost: " << setprecision(1) << cost;
+    // }
+
 };
-
-
 
 #endif
