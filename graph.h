@@ -59,7 +59,8 @@ class Vertex
     {
         if (adjacent_.size() < end)
             cout << "not_connected";
-        else if(adjacent_[end].getDistance() != numeric_limits<DistType>::max())
+        // else if(adjacent_[end].getDistance() != numeric_limits<DistType>::max())
+        else if(adjacent_[end].getDistance() != 0)
         {
             cout << "connected ";
             cout << fixed << setprecision(1) << adjacent_[end].getDistance();
