@@ -9,6 +9,7 @@ int pathfindDriver(int argc, char **argv) {
     
     //Begin your code here. Feel free to add any helper functions or classes you need,
     //as long as we only have to call this function to run the specified assignment.
+
     ifstream input_file(argv[1]);
     ifstream path_file(argv[2]);
     string line;

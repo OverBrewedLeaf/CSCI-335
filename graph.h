@@ -21,12 +21,12 @@ class Vertex
 {
     private:
     vector<Vertex<DistType>> adjacent_;
-    DistType distance_;
+    DistType distance_ = 0;
 
     public: 
     Vertex()
     {
-        distance_ = numeric_limits<DistType>::max();
+        // distance_ = numeric_limits<DistType>::max();
     }
 
     Vertex(DistType distance)
