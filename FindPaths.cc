@@ -11,9 +11,8 @@ int pathfindDriver(int argc, char **argv) {
     //as long as we only have to call this function to run the specified assignment.
 
     ifstream input_file(argv[1]);
-    ifstream path_file(argv[2]);
-    string line;
 
+    string line;
     getline(input_file,line);
 
     Graph<float> graph(stoi(line));
@@ -37,6 +36,14 @@ int pathfindDriver(int argc, char **argv) {
         }
       }
     }
+    
+    // for(size_t i = 1; i < graph.getSize(); i++)
+    // {
+    //   graph.heap(i);
+    //   cout << i << ":";
+    //   // graph.findPath(stoi(argv[2]),i);
+    //   cout << endl;
+    // }
 
 
 
