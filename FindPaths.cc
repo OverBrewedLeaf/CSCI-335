@@ -37,16 +37,13 @@ int pathfindDriver(int argc, char **argv) {
       }
     }
     
-    // for(size_t i = 1; i < graph.getSize(); i++)
-    // {
-    //   graph.heap(i);
-    //   cout << i << ":";
-    //   // graph.findPath(stoi(argv[2]),i);
-    //   cout << endl;
-    // }
-
-
-
+    for(size_t i = 1; i < graph.getSize(); i++)
+    {
+      cout << i << ": ";
+      graph.Dijkstra(i);
+      // graph.findPath(stoi(argv[2]),i);
+      cout << endl;
+    }
 
     return 0;
 }

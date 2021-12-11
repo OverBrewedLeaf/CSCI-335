@@ -23,38 +23,52 @@ class Vertex
     private:
 
     vector<Vertex<DistType>> adjacent_;
+    Vertex<DistType> * path_;
     DistType weight_ = 0;
     DistType distance_ = numeric_limits<DistType>::max();
     bool known_ = false;
     size_t adjacentSize_ = 0; 
+    bool adjacenty_ = false;
 
     public: 
     Vertex(){}
 
-    Vertex(DistType weight){ weight_ = weight; }
+    Vertex(DistType weight)
+    { 
+        weight_ = weight;
+        adjacenty_ = true;
+    }
     DistType getDistance() { return distance_; }
     void setDistance(DistType distance) { distance_ = distance; }
     DistType getWeight() { return weight_; }
     bool getKnown() { return known_; }
     void setKnown(bool known) { known_ = known; }
     size_t getAdjacentSize(){ return adjacentSize_;}
+    bool getAdjacenty(){ return adjacenty_; }
+    vector<Vertex<DistType>> getAdjacentVector() { return adjacent_;}
+    Vertex<DistType> * getPath(){ return path_;}
+    void setPath(Vertex<DistType> path){ path_ = path;}
 
     void insert(size_t vertex, DistType weight)
     {
         if(adjacent_.size() <= vertex)
         {
             adjacent_.resize(vertex+2);
+            adjacentSize_ = vertex+2;
+            cout << adjacent_.size();
         }
-        adjacentSize_++;
+        adjacenty_ = true;
         adjacent_[vertex] = Vertex<DistType>(weight);
     }
 
-    string printVertex(){//debug
-        string result = "weight: " + to_string(weight_) + "\n";
-        for (size_t i = 0; i < adjacent_.size(); i++){
-            result += "\tadjacent of " + to_string(i) + " has weight of " + to_string(adjacent_[i].weight_) + "\n";
+    void printVertex(){//debug
+        cout << "weight: " << to_string(weight_) << "\n";
+        for (size_t i = 1; i <= adjacentSize_; i++){
+            cout << "\tis adjacent to " << to_string(i) <<
+            ", weight:" << to_string(adjacent_[i].weight_) <<
+            ", distance: " << to_string(adjacent_[i].distance_) <<
+            ", adjacent: " << to_string(adjacent_[i].adjacenty_) << "\n";
         }
-        return result;
     }
 
     void adjacent(size_t end)
@@ -123,7 +137,7 @@ class Graph
 
     size_t getSize(){ return size_; }
 
-    void heap(size_t start)
+    void Dijkstra(size_t start)
     {
         BinaryHeap<Vertex<DistType>> heap;
         heap.insert(start);
@@ -133,9 +147,24 @@ class Graph
             Vertex<DistType> min = heap.findMin();
             heap.deleteMin();
             min.setKnown(true);
-            for(unsigned int i = 0; i < min.getAdjacentSize(); i++)
+            for(size_t i = 1; i < min.getAdjacentSize(); i++)
             {
                 
+                if(vertex_[i].getAdjacenty())
+                {
+                    Vertex<DistType> comparison = vertex_[i];
+                    
+                    if(!comparison.getKnown())
+                    {
+                        
+                        if(min.getAdjacentVector()[i].getWeight() < comparison.getDistance())
+                        {
+                            // comparison.setDistance(min.getDistance() + min.getAdjacentVector()[i].getWeight());
+                            // comparison.setPath(min);
+                            
+                        }
+                    }
+                }
             }
         }
     }
