@@ -21,36 +21,36 @@ class Vertex
 {
     private:
     vector<Vertex<DistType>> adjacent_;
-    DistType distance_ = 0;
+    DistType weight_ = 0;
 
     public: 
     Vertex()
     {
-        // distance_ = numeric_limits<DistType>::max();
+        // weight_ = numeric_limits<DistType>::max();
     }
 
-    Vertex(DistType distance)
+    Vertex(DistType weight)
     {
-        distance_ = distance;
+        weight_ = weight;
     }
 
-    DistType getDistance()
+    DistType getweight()
     {
-        return distance_;
+        return weight_;
     }
 
-    void insert(size_t vertex, DistType distance)
+    void insert(size_t vertex, DistType weight)
     {
         if(adjacent_.size() <= vertex)
         {
             adjacent_.resize(vertex+2);
         }
-        adjacent_[vertex] = Vertex<DistType>(distance);
+        adjacent_[vertex] = Vertex<DistType>(weight);
     }
     string printVertex(){//debug
-        string result = "distance: " + to_string(distance_) + "\n";
+        string result = "weight: " + to_string(weight_) + "\n";
         for (size_t i = 0; i < adjacent_.size(); i++){
-            result += "\tadjacent of " + to_string(i) + " has distance of " + to_string(adjacent_[i].distance_) + "\n";
+            result += "\tadjacent of " + to_string(i) + " has weight of " + to_string(adjacent_[i].weight_) + "\n";
         }
         return result;
     }
@@ -59,11 +59,11 @@ class Vertex
     {
         if (adjacent_.size() < end)
             cout << "not_connected";
-        // else if(adjacent_[end].getDistance() != numeric_limits<DistType>::max())
-        else if(adjacent_[end].getDistance() != 0)
+        // else if(adjacent_[end].getweight() != numeric_limits<DistType>::max())
+        else if(adjacent_[end].getweight() != 0)
         {
             cout << "connected ";
-            cout << fixed << setprecision(1) << adjacent_[end].getDistance();
+            cout << fixed << setprecision(1) << adjacent_[end].getweight();
         }
         else cout << "not_connected";
     }
@@ -85,9 +85,9 @@ class Graph
     }
     ~Graph(){};
 
-    void insert(int vertex, int vertexid, DistType distance)
+    void insert(int vertex, int vertexid, DistType weight)
     {
-        vertex_[vertex].insert(vertexid,distance);
+        vertex_[vertex].insert(vertexid,weight);
     }
     void printGraph(){
         cout << "entered print graph " << endl;
