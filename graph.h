@@ -72,7 +72,7 @@ class Vertex
 
 template <typename DistType>
 class Graph
-{
+{ 
     private:
     Vertex<DistType> *vertex_;
     int size_;
