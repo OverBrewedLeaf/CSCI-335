@@ -51,7 +51,7 @@ int graphTestDriver(int argc, char **argv) {
       stringstream stream(line);
       stream >> start;
       stream >> end;
-      std::cout << line << ": ";
+      std::cout << start << " " << end << ": ";
       graph.connection(start,end);
       std::cout << std::endl;
     }
@@ -64,8 +64,8 @@ int graphTestDriver(int argc, char **argv) {
 
 int main(int argc, char **argv) {
     if (argc != 3) {
-		cout << "Usage: " << argv[0] << " <GRAPH_File>" << "<ADJACENCY_QUERYFILE>" << endl;
-		return 0;
+      cout << "Usage: " << argv[0] << " <GRAPH_File>" << "<ADJACENCY_QUERYFILE>" << endl;
+      return 0;
     }
 
     graphTestDriver<float>(argc, argv);
