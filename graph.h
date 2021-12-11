@@ -21,27 +21,23 @@ template <typename DistType>
 class Vertex
 {
     private:
+    
     vector<Vertex<DistType>> adjacent_;
     DistType weight_ = 0;
-     DistType distance_ = numeric_limits<DistType>::max();
+    DistType distance_ = numeric_limits<DistType>::max();
     bool known_ = false;
     size_t adjacentSize_ = 0; 
-    
+
     public: 
-    Vertex()
-    {
-        // weight_ = numeric_limits<DistType>::max();
-    }
+    Vertex(){}
 
-    Vertex(DistType weight)
-    {
-        weight_ = weight;
-    }
-
-    DistType getweight()
-    {
-        return weight_;
-    }
+    Vertex(DistType weight){ weight_ = weight; }
+    DistType getDistance() { return distance_; }
+    void setDistance(DistType distance) { distance_ = distance; }
+    DistType getWeight() { return weight_; }
+    bool getKnown() { return known_; }
+    void setKnown(bool known) { known_ = known; }
+    size_t getAdjacentSize(){ return adjacentSize_;}
 
     void insert(size_t vertex, DistType weight)
     {
@@ -49,6 +45,7 @@ class Vertex
         {
             adjacent_.resize(vertex+2);
         }
+        adjacentSize_++;
         adjacent_[vertex] = Vertex<DistType>(weight);
     }
     string printVertex(){//debug
@@ -63,11 +60,10 @@ class Vertex
     {
         if (adjacent_.size() < end)
             cout << "not_connected";
-        // else if(adjacent_[end].getweight() != numeric_limits<DistType>::max())
-        else if(adjacent_[end].getweight() != 0)
+        else if(adjacent_[end].getWeight() != 0)
         {
             cout << "connected ";
-            cout << fixed << setprecision(1) << adjacent_[end].getweight();
+            cout << fixed << setprecision(1) << adjacent_[end].getWeight();
         }
         else cout << "not_connected";
     }
@@ -80,6 +76,19 @@ class Graph
     private:
     Vertex<DistType> *vertex_;
     int size_;
+
+    // string findPath(size_t start, size_t end)
+    // {
+    //     if(start == end) return "";
+        
+    // }
+
+    // DistType findCost(size_t start, size_t end)
+    // {
+    //     if(start == end) return 0;
+        
+        
+    // }
 
     public:
     Graph(size_t size)
