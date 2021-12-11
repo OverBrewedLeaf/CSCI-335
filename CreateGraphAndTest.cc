@@ -1,8 +1,7 @@
-#include <iostream>
-#include <vector>
+//Author: Jeffrey Li
+//Driver Code
 #include <string>
 #include <fstream>
-#include <sstream>
 
 
 #include "graph.h"
@@ -28,8 +27,8 @@ int graphTestDriver(int argc, char **argv) {
     {
       stringstream stream(line);
       int vertex = 0;
-      int vertexid = 1;
-      DistType weight = 2;
+      int vertexid = 0;
+      DistType weight = 0;
 
       stream >> vertex;
       
@@ -51,7 +50,9 @@ int graphTestDriver(int argc, char **argv) {
       stringstream stream(line);
       stream >> start;
       stream >> end;
-      cout << line << ": " << graph.connection(start,end) << "\n";
+      cout << line << ": ";
+      graph.connection(start,end);
+      cout << endl;
     }
     // graph.printGraph();
 

@@ -1,10 +1,14 @@
+//Author: Jeffrey Li
+//Graph Code
+
 #ifndef STUDENT_GRAPH
 #define STUDENT_GRAPH
 
 #include "binary_heap.h"
-
+#include <limits>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -17,13 +21,12 @@ class Vertex
 {
     private:
     vector<Vertex<DistType>> adjacent_;
-    DistType distance_;//currently same as weight
-
+    DistType distance_;
 
     public: 
     Vertex()
     {
-        distance_ = 0;
+        distance_ = numeric_limits<DistType>::max();
     }
 
     Vertex(DistType distance)
@@ -38,17 +41,13 @@ class Vertex
 
     void insert(size_t vertex, DistType distance)
     {
-        // cout << "inside insert function vertex- " << vertex << "   distance- " << distance << endl;
         if(adjacent_.size() <= vertex)
         {
             adjacent_.resize(vertex+2);
         }
-        // cout << "\t adjacent size is " << adjacent_.size() << endl;
         adjacent_[vertex] = Vertex<DistType>(distance);
-        // adjacent_.insert(vertex,Vertex<DistType>(distance));
-        // cout << "inside insert adjacent_ is " << adjacent_.size() << endl;
     }
-    string printVertex(){
+    string printVertex(){//debug
         string result = "distance: " + to_string(distance_) + "\n";
         for (size_t i = 0; i < adjacent_.size(); i++){
             result += "\tadjacent of " + to_string(i) + " has distance of " + to_string(adjacent_[i].distance_) + "\n";
@@ -56,17 +55,16 @@ class Vertex
         return result;
     }
 
-    string adjacent(size_t end)
+    void adjacent(size_t end)
     {
-        string result = "";
-        // cout << "the adjacent_ size is " << adjacent_.size() << endl;
-        // cout << printVertex() << endl;
         if (adjacent_.size() < end)
-            result += "not_connected";
-        else if(adjacent_[end].getDistance() != 0)
-            result += "connected " + to_string(adjacent_[end].getDistance());
-        else result += "not_connected";
-        return result;
+            cout << "not_connected";
+        else if(adjacent_[end].getDistance() != numeric_limits<DistType>::max())
+        {
+            cout << "connected ";
+            cout << fixed << setprecision(1) << adjacent_[end].getDistance();
+        }
+        else cout << "not_connected";
     }
 
 } ;
@@ -98,9 +96,9 @@ class Graph
             cout << vertex_[i].printVertex() << endl;
         }
     }
-    string connection(int start,int end)
+    void connection(int start,int end)
     {
-        return vertex_[start].adjacent(end);
+        vertex_[start].adjacent(end);
     }
 };
 
