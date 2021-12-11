@@ -55,7 +55,7 @@ class Vertex
         {
             adjacent_.resize(vertex+2);
             adjacentSize_ = vertex+2;
-            cout << adjacent_.size();
+            // cout << adjacent_.size();//debug
         }
         adjacenty_ = true;
         adjacent_[vertex] = Vertex<DistType>(weight);
@@ -130,7 +130,7 @@ class Graph
         cout << "size is " << size_ << endl;
         for(int i=0; i<size_; i++){
             cout << "i = " << i << endl;
-            cout << vertex_[i].printVertex() << endl;
+            // cout << vertex_[i].printVertex() << endl;//Debugger
         }
     }
     void connection(int start,int end){ vertex_[start].adjacent(end); }
