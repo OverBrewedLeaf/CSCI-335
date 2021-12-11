@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -22,7 +23,10 @@ class Vertex
     private:
     vector<Vertex<DistType>> adjacent_;
     DistType weight_ = 0;
-
+     DistType distance_ = numeric_limits<DistType>::max();
+    bool known_ = false;
+    size_t adjacentSize_ = 0; 
+    
     public: 
     Vertex()
     {
