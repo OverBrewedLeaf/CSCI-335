@@ -59,10 +59,10 @@ class Vertex
         // std::cout << "the adjacent_ size is " << adjacent_.size() << std::endl;
         // std::cout << printVertex() << std::endl;
         if (adjacent_.size() < end)
-            std::cout << "not_connected ";
+            std::cout << "not_connected";
         else if(adjacent_[end].getDistance() != 0)
             std::cout << "connected " << adjacent_[end].getDistance();
-        else std::cout << "not_connected ";
+        else std::cout << "not_connected";
     }
 
 } ;
