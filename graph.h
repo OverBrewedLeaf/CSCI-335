@@ -54,15 +54,17 @@ class Vertex
         return result;
     }
 
-    void adjacent(size_t end)
+    string adjacent(size_t end)
     {
+        string result = ""
         // std::cout << "the adjacent_ size is " << adjacent_.size() << std::endl;
         // std::cout << printVertex() << std::endl;
         if (adjacent_.size() < end)
-            std::cout << "not_connected";
+            result += "not_connected";
         else if(adjacent_[end].getDistance() != 0)
-            std::cout << "connected " << adjacent_[end].getDistance();
-        else std::cout << "not_connected";
+            result += "connected " + to_string(adjacent_[end].getDistance());
+        else result += "not_connected";
+        return result;
     }
 
 } ;

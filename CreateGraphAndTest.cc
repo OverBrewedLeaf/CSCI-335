@@ -51,9 +51,7 @@ int graphTestDriver(int argc, char **argv) {
       stringstream stream(line);
       stream >> start;
       stream >> end;
-      std::cout << start << " " << end << ": ";
-      graph.connection(start,end);
-      std::cout << std::endl;
+      std::cout << line << ": " << graph.connection(start,end) << "\n";
     }
     // std::cout << "later Graph is " << std::endl;
     // graph.printGraph();
